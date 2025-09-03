@@ -18,17 +18,14 @@ indian_languages = {
     'Urdu': 'ur',
     'Sanskrit': 'sa'
 }
-
 def chatbot_response(user_input, target_lang_code='en'):
     try:
-        # Construct bot's response message
-        response = f"You said: {user_input}"
-        
-        # Translate response to the target language with auto source detection
-        translated_response = GoogleTranslator(source='auto', target=target_lang_code).translate(response)
+        # Translate only the user's message
+        translated_response = GoogleTranslator(source='auto', target=target_lang_code).translate(user_input)
         return translated_response
     except Exception as e:
         return f"Error: {e}"
+
 
 st.title("Multilingual Indian Language Chatbot")
 
@@ -44,3 +41,4 @@ if st.button("Translate"):
         st.write(result)
     else:
         st.write("Please enter a message to translate.")
+
